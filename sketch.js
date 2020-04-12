@@ -121,16 +121,20 @@ async function getBg(){
   var response=await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
   var responseJSON=await response.json();
   console.log(responseJSON);
+   
   var datetime="2020-04-07T21:24:32.396332+09:00";
   console.log(datetime);
+   
   var hour=datetime.slice(11,13);
   console.log(hour);
+   
      if (hour>=0600 && hour<=1900) {
          back="Bg1.jpg"
   }
      else{
          back="Bg2.jpg"
   }
+   
   bgImg=loadImage(back);
 }
 
