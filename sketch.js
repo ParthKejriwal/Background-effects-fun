@@ -4,22 +4,26 @@ const Bodies=Matter.Bodies;
 const Constraint=Matter.Constraint;
 
 var box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,box20;
+
 var block1,block2,block3;
+
 var ball,chain;
+
 var bgImg;
 var back="Bg1.jpg";
 
 var count=0;
 var engine,world;
-//var planets=createGroup();
+
 function preload(){
-  getBg();
+   getBg();
 }
 
 function setup() {
-  createCanvas(800,600);
-  engine=Engine.create();
-  world=engine.world;
+ createCanvas(800,600);
+ engine=Engine.create();
+ world=engine.world;
+  
  block1=new Platform(650, 200, 200, 20);
  box1=new Target(590,175,30,30);
  box2=new Target(630,175,30,30);
@@ -47,20 +51,23 @@ block2=new Platform(650,300,200,20);
  block3=new Platform(650,445,450,20); block4=new Platform(425,455,20,70)
  block5=new Platform(775,405,20,70);
 
-ball=new Box(170,420,25,25);
+ ball=new Box(170,420,25,25);
  slingshot = new SlingShot(ball.body,{x:170, y:420});
  
 }
 
 function draw() {
-  if (bgImg) {
-    background(bgImg); 
+   if (bgImg) {
+     background(bgImg); 
   } 
-  Engine.update(engine);
-  if (frameCount%50===0) {
+ Engine.update(engine);
+  
+   if (frameCount%50===0) {
      count =count+1
   }
-  text("Score"+count,750,50);
+  
+ text("Score"+count,750,50);
+  
  box1.display();
  box2.display();
  box3.display();
@@ -81,27 +88,32 @@ function draw() {
  box18.display();
  box19.display();
  box20.display();
+  
  block1.display();
  block2.display();
  block3.display();
  block4.display();
  block5.display();
+  
  fill(200,200,200);
+  
  ball.display();
  slingshot.display();
 }
 
 function mouseDragged(){
-  Matter.Body.setPosition(ball.body, {x: mouseX , y: mouseY});
+   Matter.Body.setPosition(ball.body, {x: mouseX , y: mouseY});
 }
 
 function mouseReleased(){
- slingshot.fly();
+   slingshot.fly();
 }
 
 function keyPressed(){
-  if(keyCode === 32){
-      slingshot.attach(ball.body);
+   if(keyCode === 32){
+       slingshot.attach(ball.body);
+       ball.x=170;
+       ball.y=420;
   }
 }
 
@@ -113,11 +125,11 @@ async function getBg(){
   console.log(datetime);
   var hour=datetime.slice(11,13);
   console.log(hour);
-  if (hour>=0600 && hour<=1900) {
-    back="Bg1.jpg"
+     if (hour>=0600 && hour<=1900) {
+         back="Bg1.jpg"
   }
-  else{
-    back="Bg2.jpg"
+     else{
+         back="Bg2.jpg"
   }
   bgImg=loadImage(back);
 }
